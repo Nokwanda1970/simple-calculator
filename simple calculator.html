@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Calculator</title>
+</head>
+<body>
+
+  <h2>Simple Calculator</h2>
+
+  <label>Enter first number:</label><br>
+  <input id="num1" type="text"><br><br>
+
+  <label>Enter second number:</label><br>
+  <input id="num2" type="text"><br><br>
+
+  <label>Select operator:</label><br>
+  <select id="operator">
+    <option value="+">Addition (+)</option>
+    <option value="-">Subtraction (-)</option>
+    <option value="*">Multiplication (*)</option>
+    <option value="/">Division (/)</option>
+  </select><br><br>
+
+  <button onclick="calculate()">Calculate</button>
+
+  <h3 id="result"></h3>
+
+  <script>
+    function calculate() {
+      const n1 = document.getElementById("num1").value;
+      const n2 = document.getElementById("num2").value;
+      const op = document.getElementById("operator").value;
+      const output = document.getElementById("result");
+
+      const num1 = parseFloat(n1);
+      const num2 = parseFloat(n2);
+
+      if (isNaN(num1) || isNaN(num2)) {
+        output.textContent = "Error: Please enter valid numbers only.";
+        return;
+      }
+
+      if (op === "/" && num2 === 0) {
+        output.textContent = "Error: Division by zero is not allowed.";
+        return;
+      }
+
+      let answer;
+
+      switch (op) {
+        case "+": answer = num1 + num2; break;
+        case "-": answer = num1 - num2; break;
+        case "*": answer = num1 * num2; break;
+        case "/": answer = num1 / num2; break;
+        default:  
+          output.textContent = "Error: Invalid operator selected.";
+          return;
+      }
+
+      output.textContent = "Result: " + answer;
+    }
+  </script>
+
+</body>
+</htm>
